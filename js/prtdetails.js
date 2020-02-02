@@ -1,31 +1,24 @@
 $(document).ready(function(){
     
 
-$("#plateid-form").submit(function(e){
-    e.preventDefault();  
-    
-    let plateId = $('#plate-id').val();
-    if(plateId===''||plateId===null){
-        console.log("I:Input empty or undefined");
-        
-    }
-    else
-    {        
-        $.post("includes/platedetails.inc.php",{
-        id:plateId        
-        },
-        function(data, status){
-            console.log(status);
+$("#edmask_id").on('keyup',function(e){
+    e.preventDefault();      
+    let prtId = $('#edmask_id').val();
+
+    if(prtId.length>2){
+      
+        $.post ("includes/prtdetails.inc.php",
+        {id:prtId},
+        function(data){
             let str="";
             let arr_rows = JSON.parse(data);
-            
-            arr_rows.forEach(myOutput);
-            console.log(str);
-            $('.index-table tbody').append(str);
+            arr_rows.foreach(myPrtArray);
 
-            function myOutput(item){
-                str +="<tr><td>"+ item["MEID"] +"</td><td>"+ item["PLATETHICK"] +"</td><td>"+ item["PLATEWIDTH"] +"</td><td>"+ item["PLATELENGTH"] +"</td><td>"+ item["MN"] +"</td><td>"+ item["CU"] +"</td><td>"+ item["AL"] +"</td></tr>"; 
-            }   
+            $('.edmask-options').append(str);
+
+            function myPrtArray(item){
+                str+="<li>"+ item['prtindex'] +"</li>"
+            }
         });
     }
     

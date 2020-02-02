@@ -68,6 +68,22 @@ public function getPlateDetails($id){
     }
     
 }
+
+public function getPrtDetails($id){
+    $idFull = $id."%";
+    $sql = "SELECT SELECT DISTINCT prtindex FROM mpprtedgemask WHERE prtindex like ?";
+    $stmt = $this->connect()->prepare($sql);
+    $stmt->execute([$idFull]);
+    $records =$stmt->fetchAll();
+    $totalRecords =  count($records);
+    if($totalRecords>0){
+        return $records;
+    }
+    else{
+        return "No records";
+    }
+    
+}
 }
 
 $summary = new Summary();

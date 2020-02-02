@@ -28,20 +28,17 @@ require('includes/session.inc.php');
 
 		<div class="header"></div>
 
-		<div class="sidebar" >
-			<form id="plateid-form"  action="includes/prtdetails.inc.php" method="POST" enctype="multipart/form-data">
-				<p>Plate ID</p>
-				<input type="text" id="plate-id" name="plate-id">			
-				<input type="submit" name="submit">
-			</form>		
-		</div>
-
+		
 
 		<div class="content">
-			<table class="index-table">
-				<thead><tr><th>MEID</th><th>PLATETHICK</th><th>PLATEWIDTH</th><th>PLATELENGTH</th><th>MN</th><th>CU</th><th>AL</th></tr></thead>
-				<tbody></tbody>
-			</table>
+			<fieldset>
+				<input id="edmask_id" type="text" name="edmaskId" placeholder="Enter ID">
+				<ul class="edmask-options">
+					<li>This is one</li>
+					<li>This is two</li>
+				</ul>
+
+			</fieldset>
 			
 		</div>
 		<div class="footer"><p>Copyright @ <a href="http://www.primetals.com" style="color:white; ">www.primetals.com</a></p></div>	

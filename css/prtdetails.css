@@ -13,8 +13,7 @@ body{background-color: #eeeeee;}
     grid-template-columns: 1fr 1fr;
     grid-template-areas: 
     "title title"
-    "header header"
-    "sidebar sidebar"
+    "header header" 
     "content content"
     "footer footer";
     grid-gap: 5px;
@@ -115,26 +114,24 @@ padding: 5px;
     background-color: #edf7fa;
     min-height: calc(100vh - 200px);
 }
-
-.index-table {
-    border-collapse: collapse;
-    width: 100%;    
-    border: 1px solid black;
-    font-size: 14px;
+.content input{
+    margin:5px;
+    padding: 5px 10px;
+    width: 25%;
 }
 
-.index-table td, .index-table th{
-    text-align: center;
-    padding: 5px 8px;
-    border: 1px solid black;
+.content ul{
+    width: 30%;
+    margin-left:5px;
+    list-style-type: none;
+    background-color:#BEBEBE;
+}
+.content ul li{
+    padding: 5px 10px;
 }
 
-.index-table th{
-    background-color: #FFA892;
-}
-
-.index-table tr:nth-child(even){
-    background-color: #f2f2f2;
+.content ul li:nth-child(even){
+    background-color: #dddddd;
 }
 
 .footer{
@@ -160,7 +157,7 @@ padding: 5px;
         grid-template-areas: 
         ". title title ."
         ". header header ."
-        ". sidebar content ."
+        ". content content ."
         ". footer footer .";
     
     }
