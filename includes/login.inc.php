@@ -23,7 +23,7 @@ else{
 	$userArr = $user->checkUserExist($userid);	
 	$pwdCheck = password_verify($pwd, $userArr[0]["userpwd"]);
 	if($pwdCheck==false){
-		header("Location: ../login.html?error=invalid");
+		header("Location: ../login.html?error=invalidDetails");
 		exit();
 	}
 	else if($pwdCheck==true){
@@ -34,7 +34,7 @@ else{
 
 	}
 	else{
-		header("Location: ../login.html?error=invalidlogin");
+		header("Location: ../login.html?error=invalidLogin");
 		exit();
 	}
 
