@@ -33,12 +33,21 @@ require('includes/session.inc.php');
 		<div class="content">
 			<fieldset>
 				<input id="edmask_id" type="text" name="edmaskId" placeholder="Enter ID">
-				<ul class="edmask-options">
-					<li>This is one</li>
-					<li>This is two</li>
-				</ul>
-
+				<ul class="edmask-options"></ul>
 			</fieldset>
+
+			<div class="edgemask-table">
+				<table><thead>
+					<tr><th>PRTINDEX</th>
+					<th>FLOW COEFF</th>
+					<th>FLOW OFFSET</th>
+					<th>THICK COEFF</th></tr>
+					</thead>
+					<tbody>
+						
+					</tbody>
+				</table>
+			</div>
 			
 		</div>
 		<div class="footer"><p>Copyright @ <a href="http://www.primetals.com" style="color:white; ">www.primetals.com</a></p></div>	
