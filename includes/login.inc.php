@@ -6,7 +6,7 @@ require('../classes/user.class.php');
 
 if(!isset($_POST['login-submit']))
 {
-	header("Location: ../login.html");
+	header("Location: ../login.php");
 	exit();
 }
 
@@ -15,7 +15,8 @@ $pwd = $_POST['pwd'];
 $userArr;
 
 if(empty($userid) || empty($pwd)){
-	header("Location: ../login.html?error=emptyfields");
+	header("Location: ../
+	.php?error=emptyfields");
 	exit();
 }
 else{
@@ -23,18 +24,18 @@ else{
 	$userArr = $user->checkUserExist($userid);	
 	$pwdCheck = password_verify($pwd, $userArr[0]["userpwd"]);
 	if($pwdCheck==false){
-		header("Location: ../login.html?error=invalidDetails");
+		header("Location: ../login.php?error=invalidDetails");
 		exit();
 	}
 	else if($pwdCheck==true){
 		session_start();
-		$_SESSION['userId']=$userArr["idusers"];
+		$_SESSION['userId']=$userArr[0]["idusers"];
 		header("Location: ../index.php?login=success");
 		exit();
 
 	}
 	else{
-		header("Location: ../login.html?error=invalidLogin");
+		header("Location: ../login.php?error=invalidLogin");
 		exit();
 	}
 
