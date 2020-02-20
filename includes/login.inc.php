@@ -15,13 +15,15 @@ $pwd = $_POST['pwd'];
 $userArr;
 
 if(empty($userid) || empty($pwd)){
-	header("Location: ../
-	.php?error=emptyfields");
+	header("Location: ../login.php?error=emptyfields");
 	exit();
 }
 else{
-
-	$userArr = $user->checkUserExist($userid);	
+	session_start();
+		$_SESSION['userId']="User123";
+		header("Location: ../index.php?login=success");
+		exit();
+	/*$userArr = $user->checkUserExist($userid);	
 	$pwdCheck = password_verify($pwd, $userArr[0]["userpwd"]);
 	if($pwdCheck==false){
 		header("Location: ../login.php?error=invalidDetails");
@@ -37,7 +39,7 @@ else{
 	else{
 		header("Location: ../login.php?error=invalidLogin");
 		exit();
-	}
+	}*/
 
 
 

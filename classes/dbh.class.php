@@ -3,7 +3,7 @@ class Dbh{
     private $serverName ="localhost";
     private $username="root";
     private $pwd="";
-    private $dbName="ajax";
+    private $dbName="baosteel";
     private $port ="3306";
 
     protected function connect(){

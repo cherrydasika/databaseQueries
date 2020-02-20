@@ -37,10 +37,14 @@ public function setUserStmt($author){
     }
 }
 
-public function getBetweenDates($start, $end){
-    $sql = "select * from mppdiplate_phy where  PRODUCEDDATE >= ? AND   PRODUCEDDATE <= ?";
+public function getBetweenDates($start, $end, $offset){
+    $sql = "select Meid, CoolingMode, PlateThick,PlateWidth, PlateLength, PlateSpeed, PDIStartTemp, PDIFinishTemp from platesummary where  date(toc) >= :start AND   date(toc) <= :end LIMIT 10 OFFSET :offsetResults";
     $stmt = $this->connect()->prepare($sql);
-    $stmt->execute([$start, $end]);
+    $stmt->bindParam(':start',$start, PDO::PARAM_INT);
+    $stmt->bindParam(':end',$end, PDO::PARAM_INT);
+    $stmt->bindParam(':offsetResults',$offset, PDO::PARAM_INT);
+    $stmt->execute();
+    //$stmt->execute([$start, $end, $offset]);
     $records =$stmt->fetchAll();
     $totalRecords =  count($records);
     if($totalRecords>0){
@@ -52,12 +56,43 @@ public function getBetweenDates($start, $end){
     
 }
 
-public function getPlateDetails($id){
-    $sql = "SELECT mppdiplate_phy.MEID, mppdiplate_phy.PLATETHICK, mppdiplate_phy.PLATEWIDTH, mppdiplate_phy.PLATELENGTH, 
-            mpcomposition_phy.MN, mpcomposition_phy.CU, mpcomposition_phy.AL FROM mppdiplate_phy
-            INNER JOIN mpcomposition_phy ON mppdiplate_phy.MEID = mpcomposition_phy.MEID AND mpcomposition_phy.MEID = ?";
+public function getPlateSummaryDetails($id){
+    $sql = "SELECT * from platesummary where Meid = :meid";
     $stmt = $this->connect()->prepare($sql);
-    $stmt->execute([$id]);
+    $stmt->bindParam(':meid',$id, PDO::PARAM_INT);
+    $stmt->execute();
+    $records =$stmt->fetchAll();
+    $totalRecords =  count($records);
+    if($totalRecords>0){
+        return $records;
+    }
+    else{
+        return "No records";
+    }
+    
+}
+
+public function getPlateCompDetails($id){
+    $sql = "SELECT * from platecomposition where Meid = :meid";
+    $stmt = $this->connect()->prepare($sql);
+    $stmt->bindParam(':meid',$id, PDO::PARAM_INT);
+    $stmt->execute();
+    $records =$stmt->fetchAll();
+    $totalRecords =  count($records);
+    if($totalRecords>0){
+        return $records;
+    }
+    else{
+        return "No records";
+    }
+    
+}
+
+public function getWaterFlowRate($id){
+    $sql = "SELECT * from plateflowrate where Meid = :meid";
+    $stmt = $this->connect()->prepare($sql);
+    $stmt->bindParam(':meid',$id, PDO::PARAM_INT);
+    $stmt->execute();
     $records =$stmt->fetchAll();
     $totalRecords =  count($records);
     if($totalRecords>0){
